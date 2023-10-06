@@ -16,7 +16,7 @@
 			"NotifyForOperationDelete": true,
 			"NotifyForOperationUndelete": true,
 			"NotifyForOperationUpdate": true,
-			"Query": "SELECT Id, Name, Phone FROM Account WHERE Name='ELTORO.IT'"
+			"Query": "SELECT Id, Name, Site FROM Account WHERE Name='ELTORO.IT'"
 		}
 	],
 	"total": 1
