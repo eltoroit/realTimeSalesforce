@@ -3,7 +3,7 @@
 		"days": 1,
 		"alias": "soRTSF",
 		"OpenBrowser": true,
-		"QuitOnErrors": false,
+		"QuitOnErrors": true,
 		"UserOnScreen": true // Can I prompt the user for manual verification? On CICD, this should be false
 	},
 	"steps": [
