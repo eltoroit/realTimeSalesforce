@@ -1,4 +1,4 @@
-name: "ELTOROIT CICD Test Scratch Org"
+name: "ELTOROIT_RealTimeSalesforce"
 on: [push]
 jobs:
     build:

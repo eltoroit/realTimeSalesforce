@@ -1,4 +1,4 @@
-![ELTOROIT Test Scratch Org](https://github.com/eltoroit/realTimeSalesforce/workflows/ELTOROIT%20Test%20Scratch%20Org/badge.svg)
+![ELTOROIT Test Scratch Org](https://github.com/eltoroit/realTimeSalesforce/workflows/ELTOROIT_RealTimeSalesforce/badge.svg)
 
 # Real-Time Salesforce
 
