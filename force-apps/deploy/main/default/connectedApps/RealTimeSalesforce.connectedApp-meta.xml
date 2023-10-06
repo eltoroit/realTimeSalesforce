@@ -3,9 +3,7 @@
     <contactEmail>aperez@salesforce.com</contactEmail>
     <label>RealTimeSalesforce</label>
     <oauthConfig>
-        <callbackUrl>https://oauth.pstmn.io/v1/browser-callback
-http://localhost:3001/callback</callbackUrl>
-        <consumerKey>3MVG9M43irr9JAuzFDM4Rk0zuTMIcs6sJwoAt1meyykJvWldclGxeqoMEe6UenpWWFPE6hVfONj2oWcwQ1mEq</consumerKey>
+        <callbackUrl>https://oauth.pstmn.io/v1/browser-callback</callbackUrl>
         <isAdminApproved>false</isAdminApproved>
         <isClientCredentialEnabled>false</isClientCredentialEnabled>
         <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
