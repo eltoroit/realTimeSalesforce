@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<title>Socket.IO chat</title>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	</head>
 	<body>
-		<ul id="messages"></ul>
-		<form id="form" action=""><input id="input" autocomplete="off" /><button>Send</button></form>
+		<ul class="messages"></ul>
+		<form action=""><input autocomplete="off" /><button>Send</button></form>
 	</body>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
+		const form = document.querySelector("form");
+		const input = document.querySelector("input");
+		const messages = document.querySelector("ul");
+		input.focus();
+
 		const socket = io();
-
-		const form = document.getElementById("form");
-		const input = document.getElementById("input");
-		const messages = document.getElementById("messages");
-
 		form.addEventListener("submit", (e) => {
 			e.preventDefault();
 			if (input.value) {
