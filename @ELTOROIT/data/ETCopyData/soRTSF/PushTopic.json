@@ -1,0 +1,23 @@
+{
+	"fetched": 1,
+	"records": [
+		{
+			"attributes": {
+				"type": "PushTopic",
+				"url": "/services/data/v59.0/sobjects/PushTopic/0IF8I000000CiAHWA0"
+			},
+			"ApiVersion": 59,
+			"Description": null,
+			"Id": "0IF8I000000CiAHWA0",
+			"IsActive": true,
+			"Name": "AccountUpdates",
+			"NotifyForFields": "Referenced",
+			"NotifyForOperationCreate": true,
+			"NotifyForOperationDelete": true,
+			"NotifyForOperationUndelete": true,
+			"NotifyForOperationUpdate": true,
+			"Query": "SELECT Id, Name, Phone FROM Account WHERE Name='ELTORO.IT'"
+		}
+	],
+	"total": 1
+}

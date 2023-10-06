@@ -3,6 +3,14 @@
   "orgDestination": "soRTSF",
   "sObjectsData": [
     {
+      "name": "PushTopic",
+      "ignoreFields": "",
+      "externalIdField": null,
+      "twoPassReferenceFields": "",
+      "where": null,
+      "orderBy": null
+    },
+    {
       "name": "StreamingChannel",
       "ignoreFields": "",
       "externalIdField": null,
