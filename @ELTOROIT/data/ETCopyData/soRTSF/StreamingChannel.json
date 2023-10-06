@@ -1,0 +1,15 @@
+{
+	"fetched": 1,
+	"records": [
+		{
+			"attributes": {
+				"type": "StreamingChannel",
+				"url": "/services/data/v59.0/sobjects/StreamingChannel/0M68I0000004COiSAM"
+			},
+			"Description": null,
+			"Id": "0M68I0000004COiSAM",
+			"Name": "/u/MyGenericChannel"
+		}
+	],
+	"total": 1
+}

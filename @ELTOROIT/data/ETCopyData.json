@@ -3,6 +3,14 @@
   "orgDestination": "soRTSF",
   "sObjectsData": [
     {
+      "name": "StreamingChannel",
+      "ignoreFields": "",
+      "externalIdField": null,
+      "twoPassReferenceFields": "",
+      "where": null,
+      "orderBy": null
+    },
+    {
       "name": "Opportunity",
       "ignoreFields": "OwnerId",
       "externalIdField": null,
