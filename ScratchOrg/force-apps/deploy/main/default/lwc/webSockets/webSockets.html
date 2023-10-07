@@ -1,1 +1,10 @@
-<template> Hello </template>
+<template>
+	<lightning-card>
+		<lightning-button label="Click Me" onclick={onButtonClick} variant="brand" slot="actions"></lightning-button>
+		<c-websocket-manager lwc:ref="SocketIO" onreceived={onEventReceived}></c-websocket-manager>
+		<lightning-input label="Number" value={number} onchange={onNumberChange}></lightning-input>
+		<div slot="footer">
+			<pre>{output}</pre>
+		</div>
+	</lightning-card>
+</template>

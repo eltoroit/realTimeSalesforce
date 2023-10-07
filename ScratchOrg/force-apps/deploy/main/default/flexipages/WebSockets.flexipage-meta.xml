@@ -4,7 +4,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>webSockets</componentName>
-                <identifier>c_webSockets</identifier>
+                <identifier>c_webSockets2</identifier>
             </componentInstance>
         </itemInstances>
         <name>column1</name>
@@ -14,7 +14,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>webSockets</componentName>
-                <identifier>c_webSockets2</identifier>
+                <identifier>c_webSockets</identifier>
             </componentInstance>
         </itemInstances>
         <name>column2</name>

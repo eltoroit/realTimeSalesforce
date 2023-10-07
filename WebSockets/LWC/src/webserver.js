@@ -14,6 +14,9 @@ export default class Webserver {
 		this.app.use(express.static("public"));
 		this.allowExpressCORS();
 		await this.makeHTTP();
+		// if (!process.env.HEROKU_APP_NAME) {
+		// 	await this.makeHTTPS();
+		// }
 		this.routes();
 	}
 	makeHTTP() {
@@ -23,13 +26,28 @@ export default class Webserver {
 
 			const HTTP_PORT = process.env.PORT || process.env.HTTP_PORT_LOCAL;
 			let serverURL = "";
-			if (process.env.DYNO) {
-				serverURL = `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`;
+			if (process.env.HEROKU_APP_NAME) {
+				serverURL = `https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com`;
 			} else {
 				serverURL = `http://localhost:${HTTP_PORT}`;
 			}
 			httpServer.listen(HTTP_PORT, () => {
 				console.log(`HTTP Server running at: ${serverURL}/`);
+				resolve();
+			});
+		});
+	}
+	makeHTTPS() {
+		return new Promise((resolve, reject) => {
+			const certs = {
+				key: fs.readFileSync("certs/server.key"),
+				cert: fs.readFileSync("certs/server.cert"),
+			};
+
+			const httpsServer = https.createServer(certs, this.app);
+			this.makeSocketio({ httpServer: httpsServer });
+			httpsServer.listen(process.env.HTTPS_PORT_LOCAL, () => {
+				console.log(`HTTPS Server running at: https://localhost:${process.env.HTTPS_PORT_LOCAL}/`);
 				resolve();
 			});
 		});

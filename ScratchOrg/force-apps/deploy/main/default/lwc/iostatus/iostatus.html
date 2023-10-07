@@ -1,0 +1,11 @@
+<template>
+	<template if:true={iostatus.isVisible}>
+		<lightning-layout multiple-rows>
+			<lightning-layout-item size="12">
+				<div class="slds-notify slds-notify_alert slds-m-bottom_x-small box">
+					<div class={iostatus.class}>{iostatus.message}</div>
+				</div>
+			</lightning-layout-item>
+		</lightning-layout>
+	</template>
+</template>
