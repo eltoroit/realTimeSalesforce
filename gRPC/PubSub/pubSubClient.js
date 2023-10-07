@@ -2,6 +2,8 @@ import PubSubApiClient from "salesforce-pubsub-api-client";
 
 async function run() {
 	let client;
+	let events;
+	let lastReplayId;
 
 	const initializeClient = async () => {
 		client = new PubSubApiClient();
@@ -10,17 +12,18 @@ async function run() {
 
 	const subscribe = async (channel) => {
 		return new Promise(async (resolve, reject) => {
-			let promise = client.subscribe(channel, 1);
-			// This wait seems to solve a syncronization problem
-			await new Promise((resolve2) => setTimeout(resolve2, 1e1));
+			// let promise = client.subscribe(channel, 1);
+			let promise = client.subscribeFromReplayId(channel, 2, lastReplayId);
+			// This wait seems to solve a synchronization problem
+			await new Promise((resolve2) => setTimeout(resolve2, 1e2));
 			promise
 				.then((listener) => {
 					listener.on("data", (event) => {
-						console.log("Received event");
+						lastReplayId = Math.max(lastReplayId, event.replayId);
+						events[event.replayId] = event;
 					});
 					listener.on("lastevent", (event) => {
-						// At this point the gRPC client will close automatically
-						// unless you re-subscribe to request more events (default Pub/Sub API behavior)
+						console.log(`Received ${Object.keys(events).length} event`);
 						console.log(`Reached last requested event on channel ${listener.getTopicName()}.`);
 						resolve();
 					});
@@ -34,9 +37,10 @@ async function run() {
 	};
 
 	try {
-		let channel;
-		// channel = "/data/AccountChangeEvent";
-		channel = "/event/CloudNews__e";
+		events = {};
+		lastReplayId = 0;
+		let channel = "/event/CloudNews__e";
+		// let channel = "/data/AccountChangeEvent";
 
 		await initializeClient();
 		while (true) {

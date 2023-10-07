@@ -4,7 +4,7 @@ import https from "https";
 import express from "express";
 import { Server } from "socket.io";
 
-export default class Weberver {
+export default class Webserver {
 	io;
 	app;
 
