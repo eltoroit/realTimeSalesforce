@@ -49,8 +49,7 @@ export default class Webserver {
 
 		// receive a message from the client
 		this.socket.on("PING", (data) => {
-			data[data.length - 1].pong = new Date().toJSON();
-			console.log(JSON.stringify(data));
+			data.pong = new Date().toJSON();
 			this.io.emit("PONG", data);
 		});
 	}

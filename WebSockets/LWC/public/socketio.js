@@ -36,16 +36,11 @@ export default class MySocketIO {
 		});
 
 		this.socket.on("PONG", (data) => {
-			console.log(`PING-PONG`, data);
-			if (data.length < 3) {
-				data.push({ ping: new Date().toJSON() });
-				this.socket.emit("PING", data);
-			}
 			document.querySelector("#output").innerHTML = JSON.stringify(data, null, 2);
 		});
 	}
 
 	ping() {
-		this.socket.emit("PING", [{ ping: new Date().toJSON() }]);
+		this.socket.emit("PING", { ping: new Date().toJSON() });
 	}
 }
