@@ -3,11 +3,29 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;This is a standard &lt;/span&gt;&lt;strong style=&quot;font-size: 24px;&quot;&gt;Lightning App Builder App Page&lt;/strong&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt; built with the same custom LWC copied twice, communicating via &lt;/span&gt;&lt;strong style=&quot;font-size: 24px; color: rgb(255, 0, 209);&quot;&gt;WebSockets&lt;/strong&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt; 😀&lt;/span&gt;&lt;/p&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+                <identifier>flexipage_richText</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>region1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
                 <componentName>webSockets</componentName>
                 <identifier>c_webSockets2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>column1</name>
+        <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -17,12 +35,12 @@
                 <identifier>c_webSockets</identifier>
             </componentInstance>
         </itemInstances>
-        <name>column2</name>
+        <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>WebSockets</masterLabel>
     <template>
-        <name>flexipage:appHomeTemplateTwoColumns</name>
+        <name>flexipage:appHomeTemplateHeaderTwoColumnsEqualWidth</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

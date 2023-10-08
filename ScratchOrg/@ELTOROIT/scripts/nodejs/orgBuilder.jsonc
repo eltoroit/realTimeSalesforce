@@ -20,7 +20,7 @@
 		// Push metadata
 		"PushMetadata",
 		{ "ExecuteApex": "@ELTOROIT/scripts/apex/SetUserRecord.apex" },
-		{ "AssignPermissionSet": "psTest" },
+		{ "AssignPermissionSet": "psRealTimeSalesforce" },
 		{ "DeployProfile": "force-apps/doNotDeploy/main/default/profiles/Admin.profile-meta.xml" },
 
 		// Loading Data

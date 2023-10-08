@@ -5,9 +5,13 @@
         <visible>true</visible>
     </applicationVisibilities>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>psTest</label>
+    <label>psRealTimeSalesforce</label>
     <tabSettings>
         <tab>Counter</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Websockets</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>

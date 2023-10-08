@@ -3,21 +3,27 @@ import ET_Asserts from "c/etAsserts";
 import { LightningElement } from "lwc";
 
 export default class WebSockets extends LightningElement {
-	number = 0;
+	text = "";
 	output = "";
+	color = "#00FF00";
+	iostatusEventData = null;
 
-	timer = null;
-	onNumberChange(event) {
-		let newValue = event.target.value;
-		clearTimeout(this.timer);
-		this.timer = setTimeout(() => {
-			this.number = Number(newValue);
-		}, 1e3);
+	get style() {
+		return `background-color: ${this.color}; width: 100%; height: 50px`;
 	}
 
-	onButtonClick() {
-		this.number++;
-		this.publish({ eventName: "PING", payload: { number: this.number, ping: new Date() } });
+	onTextChange(event) {
+		this.text = event.target.value;
+		this.onPublishClick();
+	}
+
+	onColorChange(event) {
+		this.color = event.target.value;
+		this.onPublishClick();
+	}
+
+	onPublishClick() {
+		this.publish({ eventName: "PING", payload: { text: this.text, color: this.color, ping: new Date() } });
 	}
 
 	//#region SOCKET_IO
@@ -27,10 +33,16 @@ export default class WebSockets extends LightningElement {
 
 		this.refs.SocketIO.publish({ eventName, payload });
 	}
-	//#endregion
 
 	onEventReceived(event) {
 		this.output = JSON.stringify(event.detail, null, 2);
-		this.number = event.detail.number;
+		this.text = event.detail.text;
+		this.color = event.detail.color;
 	}
+
+	onIOStatus(event) {
+		Util.logger.log("@@@-WebSocket.onIOStatus", { ...event.detail });
+		this.iostatusEventData = event.detail;
+	}
+	//#endregion
 }
