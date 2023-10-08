@@ -1,0 +1,23 @@
+<template>
+	<lightning-card>
+		<lightning-button label="Publish" onclick={onPublishClick} variant="brand" slot="actions"></lightning-button>
+
+		<lightning-layout multiple-rows="true">
+			<lightning-layout-item size="12" class="slds-align_absolute-center slds-text-heading_large">
+				<c-websocket-manager lwc:ref="SocketIO" onreceived={onEventReceived} oniostatus={onIOStatus}></c-websocket-manager>
+			</lightning-layout-item>
+			<lightning-layout-item size="12" class="slds-align_absolute-center slds-text-heading_large">
+				<lightning-input label="Text" value={text} onchange={onTextChange}></lightning-input>
+			</lightning-layout-item>
+			<lightning-layout-item size="12" class="slds-align_absolute-center slds-m-top_small">
+				<div lwc:ref="color" style={style}>
+					<input type="color" label="Color" value={color} onchange={onColorChange}></input>
+				</div>
+			</lightning-layout-item>
+		</lightning-layout>
+		<div slot="footer">{output}</div>
+	</lightning-card>
+	<div class="slds-m-top_small">
+		<c-iostatus event-data={iostatusEventData}></c-iostatus>
+	</div>
+</template>

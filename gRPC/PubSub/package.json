@@ -1,0 +1,16 @@
+{
+	"name": "pubsub-demo",
+	"version": "1.0.0",
+	"main": "pubSubClient.js",
+	"author": "Andres Perez <aperez@salesforce.com> (http://eltoro.it/)",
+	"license": "ISC",
+	"type": "module",
+	"description": "",
+	"scripts": {
+		"client": "node pubSubClient.js",
+		"original": "node pubSubClientOriginal.js"
+	},
+	"dependencies": {
+		"salesforce-pubsub-api-client": "^3.0.2"
+	}
+}

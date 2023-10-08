@@ -1,0 +1,33 @@
+{
+	"settings": {
+		"days": 1,
+		"alias": "soRTSF",
+		"OpenBrowser": true,
+		"QuitOnErrors": true,
+		"UserOnScreen": true // Can I prompt the user for manual verification? On CICD, this should be false
+	},
+	"steps": [
+		// Prepare environment
+		"ValidateETCopyData",
+		"RunJestTests",
+		"BackupAlias", // In case you need to go back to the old org :-)
+
+		// Create Scratch org
+		"CreateScratchOrg",
+		"CreateFinestDebugLevel",
+		"ShowDeployPage",
+
+		// Push metadata
+		"PushMetadata",
+		{ "ExecuteApex": "@ELTOROIT/scripts/apex/SetUserRecord.apex" },
+		{ "AssignPermissionSet": "psRealTimeSalesforce" },
+		{ "DeployProfile": "force-apps/doNotDeploy/main/default/profiles/Admin.profile-meta.xml" },
+
+		// Load Data
+		{ "ETCopyData": "./@ELTOROIT/data" },
+		"GeneratePassword",
+
+		// Print results
+		"ShowFinalSuccess"
+	]
+}

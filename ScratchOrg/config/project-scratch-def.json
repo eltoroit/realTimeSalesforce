@@ -1,0 +1,14 @@
+{
+	"orgName": "ELTOROIT Real-time Salesforce Demos",
+	"edition": "Developer",
+	"hasSampleData": false,
+	"features": ["EnableSetPasswordInApi"],
+	"settings": {
+		"lightningExperienceSettings": {
+			"enableS1DesktopEnabled": true
+		},
+		"mobileSettings": {
+			"enableS1EncryptedStoragePref2": false
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"packageDirectories": [
+		{
+			"path": "force-apps/deploy",
+			"default": true
+		},
+		{
+			"path": "force-apps/doNotDeploy",
+			"default": false
+		}
+	],
+	"name": "et-basic-project",
+	"namespace": "",
+	"sfdcLoginUrl": "https://login.salesforce.com",
+	"sourceApiVersion": "59.0"
+}
