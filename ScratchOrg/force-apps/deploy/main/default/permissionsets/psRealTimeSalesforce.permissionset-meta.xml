@@ -7,10 +7,6 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>psRealTimeSalesforce</label>
     <tabSettings>
-        <tab>Counter</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Websockets</tab>
         <visibility>Visible</visibility>
     </tabSettings>

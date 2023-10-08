@@ -11,7 +11,6 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>LWC Demo</label>
     <navType>Standard</navType>
-    <tabs>Counter</tabs>
     <tabs>standard-Account</tabs>
     <tabs>Websockets</tabs>
     <uiType>Lightning</uiType>

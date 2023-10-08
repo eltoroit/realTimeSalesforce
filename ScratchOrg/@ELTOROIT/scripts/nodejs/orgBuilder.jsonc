@@ -12,7 +12,7 @@
 		"RunJestTests",
 		"BackupAlias", // In case you need to go back to the old org :-)
 
-		// Creating Scratch org
+		// Create Scratch org
 		"CreateScratchOrg",
 		"CreateFinestDebugLevel",
 		"ShowDeployPage",
@@ -23,9 +23,8 @@
 		{ "AssignPermissionSet": "psRealTimeSalesforce" },
 		{ "DeployProfile": "force-apps/doNotDeploy/main/default/profiles/Admin.profile-meta.xml" },
 
-		// Loading Data
+		// Load Data
 		{ "ETCopyData": "./@ELTOROIT/data" },
-		"RunApexTests",
 		"GeneratePassword",
 
 		// Print results
