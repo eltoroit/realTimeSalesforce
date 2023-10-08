@@ -63,13 +63,14 @@ export default class Webserver {
 	}
 
 	ioconn(socket) {
-		this.socket = socket;
+		console.log("SocketIO: New Connection", socket.id);
 
 		// receive a message from the client
-		this.socket.on("PING", (data) => {
+		socket.on("PING", (data) => {
 			data.pong = new Date().toJSON();
+			console.log("SocketIO: Received", data);
 			this.io.emit("PONG", data);
-			console.log("Published", data);
+			console.log("SocketIO: Published", data);
 		});
 	}
 
