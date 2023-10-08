@@ -1,6 +1,6 @@
 {
 	"settings": {
-		"days": 1,
+		"days": 7,
 		"alias": "soRTSF",
 		"OpenBrowser": true,
 		"QuitOnErrors": true,
