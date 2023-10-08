@@ -18,10 +18,12 @@ async function run() {
 					`events received so far)`
 			);
 			console.log(JSON.stringify(event, null, 2));
+			console.log(new Date().toJSON(), "DATA");
 		});
 
 		// Handle last requested event
 		eventEmitter.on("lastevent", (event) => {
+			console.log(new Date().toJSON(), "LAST-EVENT");
 			console.log(`Reached last requested event on channel ${eventEmitter.getTopicName()}.`);
 			// At this point the gRPC client will close automatically
 			// unless you re-subscribe to request more events (default Pub/Sub API behavior)
@@ -31,4 +33,11 @@ async function run() {
 	}
 }
 
-run();
+console.log(new Date().toJSON(), "START");
+run().then(() => {
+	console.log(new Date().toJSON(), "RESOLVED");
+});
+
+process.on("exit", (code) => {
+	console.log(new Date().toJSON(), "EXIT");
+});

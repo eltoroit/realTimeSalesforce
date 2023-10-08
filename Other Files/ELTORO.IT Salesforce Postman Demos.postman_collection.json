@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "54b4f989-a63e-4fc8-8877-efd85c21917b",
-		"name": "My Salesforce Client Demos",
+		"_postman_id": "61e9f1d9-7563-49d3-ab3e-070edaf2eb90",
+		"name": "ELTORO.IT Salesforce Postman Demos",
 		"description": "### Demo Steps\n\n1. Create Scratch Org\n    1. Clone this Github ([https://github.com/eltoroit/realTimeSalesforce](https://github.com/eltoroit/realTimeSalesforce)) repo\n    2. Create a new scratch org by running the `createOrg` script\n        1. Install packages: `npm install`\n        2. Ensure you have [ETCopyData](https://github.com/eltoroit/etcopydata) to load the data for the new scratch org.\n        3. Create scratch org: `npm run createOrg`\n2. Setup ORG\n    1. Verify your email address is associated with the scratch org owner `user user`\n    2. Grab the credentials for the connected app\n        1. Navigate to `Setup> Apps > App Manager` (_**/lightning/setup/NavigationMenus/home**_)\n        2. Find the connected app named `RealTimeSalesforce`\n        3. Click `Manage Consumer Details` and follow instructions, then copy the values in a file in VS Code\n    3. Enable Username/Password oAuth flow\n        1. Navigate to `Setup > OAuth and OpenID Connect Settings` (_**/lightning/setup/OauthOidcSettings/home**_)\n        2. Toggle `Allow OAuth Username-Password Flows` to ON.\n3. Update variables in Postman\n    1. In VS Code, open the file `etLogs/_user.json`\n    2. On a browser, [login to your](https://identity.getpostman.com/login) Postman account\n    3. Create a new collection and import the JSON file **PUT LINK HERE**\n    4. In Postman, open the `variables` tab for that collection\n    5. For these variables, ensure the \\`Initial values\\` column has these values:\n        1. url: `https://test.salesforce.com`\n        2. username: Copy this from the _user.json file\n        3. password: Copy this from the _user.json file\n        4. clientId: This is the `Consumer Key` obtained in the previous step\n        5. clientSecret: This is the `Consumer Secret` obtained in the previous step\n        6. SecretToken: Leave this blank because the IP Ranges have been set in the Admin profile\n    6. Click `Reset all`to copy the values from `Initial Value` to `Current Value`\n        1. ❌ **WARNING**: do not click the persist button or you need to go back to the previous step since this does the opposite operation from what we want.\n4. Validate settings are correct\n    1. Find the `/UNPW OAuth Tester` request in this collection\n    2. Click `Send`\n    3. Validate\n        1. You should receive a valid `access_token`\n        2. The `instance_url` should be valid for your scratch org\n5. Now that we know the oAuth is properly configured, let Postman get its own access token\n    1. Navigate to the `Authorization` tab for the collection\n    2. At the bottom of the page, click the `Get New Access Token` button\n    3. Follow the oAuth prompts\n    4. Click `Proceed`\n    5. Click `Use Token`\n6. Let's use the access token inside Postman\n    1. Find the `REST API/Query Account (OAuth)` request in this collection\n    2. Click `Send`\n    3. You should receive 2 records\n7. Streaming API demo\n    \n    1. Postman must be using the `Desktop Agent` for the requests, make sure you set that and install the required software from here: [https://www.postman.com/downloads/postman-agent/](https://www.postman.com/downloads/postman-agent/)\n    2. Re-execute the previous REST API query to ensure it works via the Desktop Agent\n    3. The `Streaming API` folder has 2 subfolders:\n        \n        1. `Subscriber (Run This!)` is the actual implementation of Streaming API long-polling\n            \n            1. Open the Postman console to see the different requests/responses in action\n            2. Select the `Pre-request Script` tab in this folder to configure the demo by indicating which event you want, and the replay Id.\n            3. Click `Run`, a new window should appear\n                \n            4. Click `Run My Salesforce Client Demos` to see the requests/responses in action\n        2. `Publisher` allows you to publish new events on the bus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "9044268",
-		"_collection_link": "https://www.postman.com/cloudy-equinox-50498/workspace/real-time-salesforce/collection/9044268-54b4f989-a63e-4fc8-8877-efd85c21917b?action=share&source=collection_link&creator=9044268"
+		"_collection_link": "https://www.postman.com/cloudy-equinox-50498/workspace/real-time-salesforce/collection/9044268-61e9f1d9-7563-49d3-ab3e-070edaf2eb90?action=share&source=collection_link&creator=9044268"
 	},
 	"item": [
 		{
@@ -3164,6 +3164,20 @@
 								},
 								{
 									"name": "Publish on chanel Id [2/2]",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Specifying Postman as the client for Salesforce logs ",
+													"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+													"context.set(\"_dttm\", new Date().toJSON());",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -3203,6 +3217,9 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
+											"// Specifying Postman as the client for Salesforce logs ",
+											"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+											"context.set(\"_dttm\", new Date().toJSON());",
 											""
 										],
 										"type": "text/javascript"
@@ -3253,6 +3270,9 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
+											"// Specifying Postman as the client for Salesforce logs ",
+											"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+											"context.set(\"_dttm\", new Date().toJSON());",
 											""
 										],
 										"type": "text/javascript"
@@ -3294,6 +3314,9 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
+											"// Specifying Postman as the client for Salesforce logs ",
+											"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+											"context.set(\"_dttm\", new Date().toJSON());",
 											""
 										],
 										"type": "text/javascript"
@@ -4587,6 +4610,39 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Call Apex Rest Service",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"posId\": \"a0A5e000007cJWKEA2\",\n  \"c\": {\n    \"Email__c\" : \"jsmith@smith.com\",\n    \"Last_Name__c\" : \"Smith\",\n    \"First_Name__c\" : \"Joe\"\n  }\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{_endpoint}}/services/apexrest/Accounts/0015c000021allFAAQ/contacts",
+									"host": [
+										"{{_endpoint}}"
+									],
+									"path": [
+										"services",
+										"apexrest",
+										"Accounts",
+										"0015c000021allFAAQ",
+										"contacts"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "Create this Apex class in the org\n\n``` java\n@RestResource(urlMapping='/calculator')\nglobal with sharing class CalculatorREST {\n    @HttpGet\n    global static Integer sumGET() {\n        RestRequest request = RestContext.request;\n        Map <String, String> params  = request.params;\n        Integer i = Integer.valueOf(params.get('i'));\n        Integer j = Integer.valueOf(params.get('j'));\n        return i + j;\n    }\n    @HttpPut\n    global static Integer sumPUT(Integer i, Integer j) { \n        return i + j;\n    }\n    @HttpPatch\n    global static Integer sumPATCH(Integer i, Integer j) { \n        return i + j;\n    }\n    @HttpPost\n    global static Integer sumPOST(Integer i, Integer j) { \n        return i + j;\n    }\n    @HttpDelete\n    global static Integer sumDELETE() {\n        RestRequest request = RestContext.request;\n        Map <String, String> params  = request.params;\n        Integer i = Integer.valueOf(params.get('i'));\n        Integer j = Integer.valueOf(params.get('j'));    \n        return i + j;\n    }\n}\n\n ```\n\nThen run the samples below"
@@ -4729,39 +4785,6 @@
 			"response": []
 		},
 		{
-			"name": "Call Apex Rest Service",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"posId\": \"a0A5e000007cJWKEA2\",\n  \"c\": {\n    \"Email__c\" : \"jsmith@smith.com\",\n    \"Last_Name__c\" : \"Smith\",\n    \"First_Name__c\" : \"Joe\"\n  }\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{_endpoint}}/services/apexrest/Accounts/0015c000021allFAAQ/contacts",
-					"host": [
-						"{{_endpoint}}"
-					],
-					"path": [
-						"services",
-						"apexrest",
-						"Accounts",
-						"0015c000021allFAAQ",
-						"contacts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "URL For Web Login",
 			"event": [
 				{
@@ -4881,6 +4904,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "REST Query Account (OAuth)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{_endpoint}}/services/data/v{{version}}/query/?q=SELECT Id, Name, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode From Account WHERE Name = 'ELTORO.IT'",
+					"host": [
+						"{{_endpoint}}"
+					],
+					"path": [
+						"services",
+						"data",
+						"v{{version}}",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "SELECT Id, Name, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode From Account WHERE Name = 'ELTORO.IT'"
+						}
+					]
+				},
+				"description": "Executes the specified SOQL query.\n\nIf the query results are too large, the response contains the first batch of results and a query identifier in the nextRecordsUrl field of the response. The identifier can be used in an additional request to retrieve the next batch.\nhttps://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_query.htm"
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -4958,19 +5014,19 @@
 		},
 		{
 			"key": "username",
-			"value": "test-wm37brzzizwl@example.com"
+			"value": "test-5mxbvjtwsu8s@example.com"
 		},
 		{
 			"key": "password",
-			"value": "c!r7rksRfstid"
+			"value": "kw]dpUx7anyml"
 		},
 		{
 			"key": "clientId",
-			"value": "3MVG99VEEJ_Bj3.4YhKSsOsD0Twjy2zt8iDtL3MBjgQ18HaQxn2f8nz_AY..PU5gBLF7vkPuGRifM_QGH9Pn5"
+			"value": "3MVG9c1ghSpUbLl8iNjpH1kBTtJx0eooFpsqsejt9AHuFxIdwHHc7oyUImRNX_W8tvK6RQaVvx4DXAuaYSuY0"
 		},
 		{
 			"key": "clientSecret",
-			"value": "540AB38550A5BB102AECB3F63737A622670666483737A41EE88194BBCB94B156",
+			"value": "F0EE5DBA66CB58FA2803A63E679E565B1F0FAB56A87ED588AD32227212E9CE8E",
 			"type": "string"
 		},
 		{

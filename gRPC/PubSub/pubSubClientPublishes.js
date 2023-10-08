@@ -5,7 +5,7 @@ export default class ELTOROIT_PUBSUB_API {
 	channel;
 	events = {};
 	lastReplayId = 0;
-	withReplayId = false;
+	withReplayId = true;
 
 	async initializeClient() {
 		this.client = new PubSubApiClient();
@@ -20,7 +20,7 @@ export default class ELTOROIT_PUBSUB_API {
 			if (this.withReplayId) {
 				listenerPromise = this.client.subscribeFromReplayId(this.channel, 2, this.lastReplayId);
 			} else {
-				listenerPromise = this.client.subscribe(this.channel, 1);
+				listenerPromise = this.client.subscribe(channel, 1);
 			}
 			listenerPromise
 				.then((listener) => {
@@ -68,11 +68,24 @@ export default class ELTOROIT_PUBSUB_API {
 		await Promise.allSettled(promises);
 	}
 
+	async publisher() {
+		console.log(new Date().toJSON(), "PUBLISHING");
+		const payload = {
+			News_Content__c: `${new Date().toJSON()} ELTORO.IT builds the best sessions!`
+			// Urgent__c: true
+		};
+		const publishResult = await this.client.publish(this.channel, payload);
+		console.log("Published event: ", JSON.stringify(publishResult));
+	}
+
 	async run() {
 		this.channel = "/event/CloudNews__e";
 		// this.channel = "/data/AccountChangeEvent";
 		try {
 			await this.initializeClient();
+			setTimeout(async () => {
+				this.publisher();
+			}, 10e3);
 			while (true) {
 				await this.subscriber(this.channel);
 			}
