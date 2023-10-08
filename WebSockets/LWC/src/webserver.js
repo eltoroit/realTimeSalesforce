@@ -69,6 +69,7 @@ export default class Webserver {
 		this.socket.on("PING", (data) => {
 			data.pong = new Date().toJSON();
 			this.io.emit("PONG", data);
+			console.log("Published", data);
 		});
 	}
 
