@@ -3,31 +3,48 @@
 ### Demo Steps
 
 1. Create Scratch Org
-   1. Clone this Github repo: [https://github.com/eltoroit/realTimeSalesforce](https://github.com/eltoroit/realTimeSalesforce)
-   2. Create a new scratch org by running the `createOrg` script
-      1. Ensure you have [ETCopyData](https://github.com/eltoroit/etcopydata) SFDX plugin to load the data for the new scratch org.
-      2. Open the project in VS Code, located at `<REPO>/ScratchOrg`
-      3. Install packages: `npm install`
-      4. Create scratch org: `npm run createOrg`
+   1. Ensure you have [ETCopyData](https://github.com/eltoroit/etcopydata) SFDX plugin to load the data for the new scratch org.
+      - `sfdx plugins | grep "etcopydata"`
+   2. Clone this Github repo: [https://github.com/eltoroit/realTimeSalesforce](https://github.com/eltoroit/realTimeSalesforce) and navigate to that folder
+      - `git clone https://github.com/eltoroit/realTimeSalesforce.git`
+      - `cd realTimeSalesforce`
+   3. Open the project in VS Code, located at `<REPO>/ScratchOrg`
+      - `code ScratchOrg`
+   4. Open the terminal window
+   5. Install the required npm libraries
+      - `npm install`
+   6. Create scratch org
+      - `npm run createOrg`
 2. Setup ORG
-   1. Verify your email address is associated with the scratch org owner `user user`
+   1. On the browser, open up the new Scratch Org
+      - During the creation of the scratch org, the setup window was opened showing the deployment status. you can reuse that window.
+      - If the window was closed, you can use `sf org open`
+   2. Verify your email address is associated with the scratch org owner `user user`
       1. Click on astro avatar
       2. Click on `User User`
-   2. Grab the credentials for the connected app
+      3. Update the email if needed
+   3. Grab the credentials for the connected app
       1. Navigate to `Setup> Apps > App Manager` (_**/lightning/setup/NavigationMenus/home**_)
-      2. Find the connected app named `RealTimeSalesforce`
+      2. Find and view the connected app named `RealTimeSalesforce`
       3. Click `Manage Consumer Details` and follow instructions
-      4. Copy the values in a new file in VS Code
-   3. Enable Username/Password oAuth flow
+      4. Copy the values in a new tab in VS Code
+   4. Enable Username/Password oAuth flow
       1. Navigate to `Setup > OAuth and OpenID Connect Settings` (_**/lightning/setup/OauthOidcSettings/home**_)
-      2. Toggle `Allow OAuth Username-Password Flows` to enable this.
+      2. Toggle `Allow OAuth Username-Password Flows` to enable this, click `OK`
 3. Update variables in Postman
 
    1. In VS Code, open the file `etLogs/_user.json` located inside the scratch org
    2. On a browser, [login to your](https://identity.getpostman.com/login) Postman account
-   3. Create a new collection and import the [JSON file with the collection definition](/Other%20Files/Postman_collection.json)
-   4. In Postman, open the `variables` tab for that collection
-   5. For these variables, ensure the `Initial values` column has these values:
+   3. Create a new workspace
+      1. From the `Workspaces` menu, click on `Create Workspace`
+      2. Select blank workspace and click `Next`
+      3. Give it a name ad select the access (Personal, Team, Parner, or Public)
+      4. Click `Create`
+   4. Import the [JSON file with the collection definition](/Other%20Files/Postman_collection.json) collection
+      1. Click the `Import` button
+      2. Enter this URL: [https://raw.githubusercontent.com/eltoroit/realTimeSalesforce/master/Other%20Files/ELTORO.IT%20Demos%20-%20Real-Time%20Salesforce.postman_collection.json](https://raw.githubusercontent.com/eltoroit/realTimeSalesforce/master/Other%20Files/ELTORO.IT%20Demos%20-%20Real-Time%20Salesforce.postman_collection.json)
+   5. Open the `variables` tab for that collection
+   6. For these variables, ensure the `Initial values` column has these values:
 
       | Variable     | Initial Value                                                                                         |
       | ------------ | ----------------------------------------------------------------------------------------------------- |
@@ -38,13 +55,17 @@
       | clientSecret | This is the `Consumer Secret` obtained in the previous step                                           |
       | SecretToken  | Leave this blank because the IP Ranges (0.0.0.0 ~ 255.255.255.255) have been set in the Admin profile |
 
-   6. Click `Reset all` to copy the values from `Initial Value` to `Current Value`
+   7. Click `Reset all` to copy the values from `Initial Value` to `Current Value`
       - ❌ **WARNING**: DO NOT click the _persist_ button or you need to go back to the previous step since this does the opposite operation from what we want.
-   7. Click `Save`
+   8. Click `Save`
 
 4. Validate settings are correct
    1. Postman must be using the `Desktop Agent` for the requests, specially for the Streaming API demo.
       - Make sure you install the required software from here: [https://www.postman.com/downloads/postman-agent/](https://www.postman.com/downloads/postman-agent/)
+      - Ensure the agent selected on the bottom right corner next to Cookies is set to `Desktop Agent`
+      - You may need to select `Auto-Select Agent`
+      - Toggle the `Auto-Select` off
+      - Select `Desktop Agent`
    2. Open the `/UNPW OAuth Tester` request in root of this this collection
    3. Click `Send`
    4. Validate
@@ -60,12 +81,12 @@
 6. Let's use the access token inside Postman
    1. Find the `REST Query Account (OAuth)` request in root of this this collection
    2. Click `Send`
-   3. You should receive 2 records
+   3. You should receive a response with 2 records
 7. Streaming API demo
-   1. Postman must be using the `Desktop Agent` for the requests in this demo.
-      - Make sure you install the required software from here: [https://www.postman.com/downloads/postman-agent/](https://www.postman.com/downloads/postman-agent/)
+
+   1. Postman must be using the `Desktop Agent` for the requests in this demo (see directions above)
    2. The `Streaming API` folder has 2 subfolders:
-      1. `Subscriber (Run This!)` is the actual implementation of Streaming API long-polling
+      1. `Subscriber (Run This!)` is the actual implementation of Streaming API subscriber that uses long-polling
          1. Open the `Postman console` to see the different requests/responses in action
          2. Select the `Pre-request Script` tab in this folder to configure the demo by indicating which event you want, and the replay Id.
             - Change the value in `line 16` to indicate which `channel` to subscribe to
@@ -73,8 +94,10 @@
          3. Click `Run`, a new tab should open
          4. Click `Run ELTORO.IT Salesforce Postman Demos` to see the requests/responses in action
       2. `Publisher` allows you to publish new events on the bus
-         1. Use the proper request in the `Publisher` folder to publish the event needed to trigger the subscriber
-            - Note: Generic events need to execute 2 requests in order. The first one gets the channel ID, the second one pblishes on that channel.
+         - Use the proper request in the `Publisher` folder to publish the event needed to trigger the subscriber
+         - Note: Generic events need to execute 2 requests in order. The first one gets the channel ID, the second one pblishes on that channel.
+      3. For a better experience, use two browser tabs
+
 8. gRPC Demo
    1. Open a new VS Code window for the `<REPO>/gRPC/SimpleDemo` folder
    2. Install packages: `npm install`
@@ -87,14 +110,14 @@
    2. Install packages: `npm install`
    3. Create a new `.env` file with these entries
 
-   | Key                  | Value                                |
-   | -------------------- | ------------------------------------ |
-   | SALESFORCE_AUTH_TYPE | username-password                    |
-   | SALESFORCE_LOGIN_URL | https://test.salesforce.com          |
-   | SALESFORCE_USERNAME  | Copy this from the `_user.json` file |
-   | SALESFORCE_PASSWORD  | Copy this from the `_user.json` file |
-   | SALESFORCE_TOKEN     | <optional>                           |
-   | PUB_SUB_ENDPOINT     | api.pubsub.salesforce.com:7443       |
+      | Key                  | Value                                |
+      | -------------------- | ------------------------------------ |
+      | SALESFORCE_AUTH_TYPE | username-password                    |
+      | SALESFORCE_LOGIN_URL | https://test.salesforce.com          |
+      | SALESFORCE_USERNAME  | Copy this from the `_user.json` file |
+      | SALESFORCE_PASSWORD  | Copy this from the `_user.json` file |
+      | SALESFORCE_TOKEN     | <optional>                           |
+      | PUB_SUB_ENDPOINT     | api.pubsub.salesforce.com:7443       |
 
    4. Run the PubSub API client `npm run client`
    5. Go back to Postman and publish an event
@@ -114,11 +137,11 @@
        - The code for this server is here: `<REPO>/WebSockets/LWC`
        1. Open a browser tab and navigate to [https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/](https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/)
        2. Click on the `Click Me` button, notice the `ping` and `pong` times are different but very close.
-    2. Leave that Open WebSockets server tab open
-    3. On a new tab, open the Scratch Org
-    4. Go to `App Launcher` > `LWC Demo` > `Web Sockets`
-    5. Duplicate the tab
-    6. Start interacting with the component
+       3. Leave that WebSockets server tab open
+    2. On a new tab, open the Scratch Org
+    3. Go to `App Launcher` > `LWC Demo` > `Web Sockets`
+    4. Duplicate the tab
+    5. Start interacting with the component
        - Type something on the textbox
        - Change the colors
        - Notice how the other component(s) get automatically updated
