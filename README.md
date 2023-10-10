@@ -44,9 +44,9 @@
       1. Click the `Import` button
       2. Enter this URL: [https://raw.githubusercontent.com/eltoroit/realTimeSalesforce/master/Other%20Files/ELTORO.IT%20Demos%20-%20Real-Time%20Salesforce.postman_collection.json](https://raw.githubusercontent.com/eltoroit/realTimeSalesforce/master/Other%20Files/ELTORO.IT%20Demos%20-%20Real-Time%20Salesforce.postman_collection.json)
    5. Open the `variables` tab for that collection
-   6. For these variables, ensure the `Initial values` column has these values:
+   6. For these variables, ensure the `Current values` column has these values:
 
-      | Variable     | Initial Value                                                                                         |
+      | Variable     | Current Value                                                                                         |
       | ------------ | ----------------------------------------------------------------------------------------------------- |
       | url          | https://test.salesforce.com                                                                           |
       | username     | Copy this from the `_user.json` file                                                                  |
@@ -55,8 +55,8 @@
       | clientSecret | This is the `Consumer Secret` obtained in the previous step                                           |
       | SecretToken  | Leave this blank because the IP Ranges (0.0.0.0 ~ 255.255.255.255) have been set in the Admin profile |
 
-   7. Click `Reset all` to copy the values from `Initial Value` to `Current Value`
-      - ❌ **WARNING**: DO NOT click the _persist_ button or you need to go back to the previous step since this does the opposite operation from what we want.
+   7. Click `Persist all` to copy the values from `Current Value` to `Initial Value`
+      - ❌ **WARNING**: DO NOT click the _reset_ button or you need to go back to the previous step since this does the opposite operation from what we want.
    8. Click `Save`
 
 4. Validate settings are correct
@@ -116,7 +116,7 @@
       | SALESFORCE_LOGIN_URL | https://test.salesforce.com          |
       | SALESFORCE_USERNAME  | Copy this from the `_user.json` file |
       | SALESFORCE_PASSWORD  | Copy this from the `_user.json` file |
-      | SALESFORCE_TOKEN     | <optional>                           |
+      | SALESFORCE_TOKEN     | _leave blank_                        |
       | PUB_SUB_ENDPOINT     | api.pubsub.salesforce.com:7443       |
 
    4. Run the PubSub API client `npm run client`
