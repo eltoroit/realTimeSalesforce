@@ -1,6 +1,6 @@
 # Real-Time Salesforce
 
-### Demo Steps
+## Demo Setup
 
 1. Create Scratch Org
    1. Ensure you have [ETCopyData](https://github.com/eltoroit/etcopydata) SFDX plugin to load the data for the new scratch org.
@@ -82,66 +82,82 @@
    1. Find the `REST Query Account (OAuth)` request in root of this this collection
    2. Click `Send`
    3. You should receive a response with 2 records
-7. Streaming API demo
 
-   1. Postman must be using the `Desktop Agent` for the requests in this demo (see directions above)
-   2. The `Streaming API` folder has 2 subfolders:
-      1. `Subscriber (Run This!)` is the actual implementation of Streaming API subscriber that uses long-polling
-         1. Open the `Postman console` to see the different requests/responses in action
-         2. Select the `Pre-request Script` tab in this folder to configure the demo by indicating which event you want, and the replay Id.
-            - Change the value in `line 16` to indicate which `channel` to subscribe to
-            - Change the value in `line 6` to indicate the value of the `replay Id`
-         3. Click `Run`, a new tab should open
-         4. Click `Run ELTORO.IT Salesforce Postman Demos` to see the requests/responses in action
-      2. `Publisher` allows you to publish new events on the bus
-         - Use the proper request in the `Publisher` folder to publish the event needed to trigger the subscriber
-         - Note: Generic events need to execute 2 requests in order. The first one gets the channel ID, the second one pblishes on that channel.
-      3. For a better experience, use two browser tabs
+## Demo Steps
 
-8. gRPC Demo
-   1. Open a new VS Code window for the `<REPO>/gRPC/SimpleDemo` folder
-   2. Install packages: `npm install`
-   3. Split the terminal in two panels side-by-side
-   4. Run the gRPC server `npm run server` on one panel
-   5. Run the gRPC client `npm run client` on the other panel
-9. PubSub API Demo
+### Streaming API demo
 
-   1. Open a new VS Code window for the `<REPO>/gRPC/PubSub` folder
-   2. Install packages: `npm install`
-   3. Create a new `.env` file with these entries
+1. Postman must be using the `Desktop Agent` for the requests in this demo (see directions above)
+2. The `Streaming API` folder has 2 subfolders:
+   - `Publisher` allows you to publish new events on the bus
+   - `Subscriber (Run This!)` is the actual implementation of Streaming API subscriber that uses long-polling
+3. Subcribe to a Streaming API event
+   1. Navigate to the `Subscriber (Run This!)` folder
+   2. Open the `Postman console` to see the different requests/responses in action
+   3. Select the `Pre-request Script` tab in this folder to configure the demo by indicating which event you want, and the replay Id.
+      - Change the value in `line 16` to indicate which `channel` to subscribe to
+      - Change the value in `line 6` to indicate the value of the `replay Id`
+   4. Click `Run`, a new tab should open
+   5. Click `Run ELTORO.IT Salesforce Postman Demos` to start the subscription
+   6. Look in the `Postman console` at the requests/responses in action
+4. Publisher to a streaming event
 
-      | Key                  | Value                                |
-      | -------------------- | ------------------------------------ |
-      | SALESFORCE_AUTH_TYPE | username-password                    |
-      | SALESFORCE_LOGIN_URL | https://test.salesforce.com          |
-      | SALESFORCE_USERNAME  | Copy this from the `_user.json` file |
-      | SALESFORCE_PASSWORD  | Copy this from the `_user.json` file |
-      | SALESFORCE_TOKEN     | _leave blank_                        |
-      | PUB_SUB_ENDPOINT     | api.pubsub.salesforce.com:7443       |
+   - Use the proper request in the `Publisher` folder to publish the event needed to trigger the subscriber
+   - Note: Generic events need to execute 2 requests in order. The first one gets the channel ID, the second one pblishes on that channel.
+   - For a better experience, use two browser tabs
 
-   4. Run the PubSub API client `npm run client`
-   5. Go back to Postman and publish an event
-      - Use the proper request in the `Publisher` folder to publish the event needed to trigger the subscriber
-      - Note: Generic events need to execute 2 requests in order. The first one gets the channel ID, the second one pblishes on that channel.
+### gRPC Demo
 
-10. Basic WebSockets Demo
-    1. Open a new VS Code window for the `<REPO>/WebSockets/Basic` folder
-    2. Install packages: `npm install`
-    3. Run the WebSocket server `npm run serve`
-    4. Open a new browser tab and navigate to [http://localhost:3000/](http://localhost:3000/)
-       - This opens a simple chat application
-    5. Duplicate the tab and put both tabs side to side.
-    6. Start chatting 😀
-11. LWC + WebSockets Demo
-    1. Test the [WebSockets server on Heroku](https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/)
-       - The code for this server is here: `<REPO>/WebSockets/LWC`
-       1. Open a browser tab and navigate to [https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/](https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/)
-       2. Click on the `Click Me` button, notice the `ping` and `pong` times are different but very close.
-       3. Leave that WebSockets server tab open
-    2. On a new tab, open the Scratch Org
-    3. Go to `App Launcher` > `LWC Demo` > `Web Sockets`
-    4. Duplicate the tab
-    5. Start interacting with the component
-       - Type something on the textbox
-       - Change the colors
-       - Notice how the other component(s) get automatically updated
+1. Open a new VS Code window for the `<REPO>/gRPC/SimpleDemo` folder
+2. Install packages: `npm install`
+3. Split the terminal in two panels side-by-side
+4. Run the gRPC server `npm run server` on one panel
+5. Run the gRPC client `npm run client` on the other panel
+
+### PubSub API Demo
+
+1.  Open a new VS Code window for the `<REPO>/gRPC/PubSub` folder
+2.  Install packages: `npm install`
+3.  Create a new `.env` file with these entries
+
+    | Key                  | Value                                |
+    | -------------------- | ------------------------------------ |
+    | SALESFORCE_AUTH_TYPE | username-password                    |
+    | SALESFORCE_LOGIN_URL | https://test.salesforce.com          |
+    | SALESFORCE_USERNAME  | Copy this from the `_user.json` file |
+    | SALESFORCE_PASSWORD  | Copy this from the `_user.json` file |
+    | SALESFORCE_TOKEN     | _leave blank_                        |
+    | PUB_SUB_ENDPOINT     | api.pubsub.salesforce.com:7443       |
+
+4.  Run the PubSub API client `npm run client`
+5.  Go back to Postman and publish an event
+
+    - Use the proper request in the `Publisher` folder to publish the event needed to trigger the subscriber
+    - Note: Generic events need to execute 2 requests in order. The first one gets the channel ID, the second one pblishes on that channel.
+
+### Basic WebSockets Demo
+
+1.  Open a new VS Code window for the `<REPO>/WebSockets/Basic` folder
+2.  Install packages: `npm install`
+3.  Run the WebSocket server `npm run serve`
+4.  Open a new browser tab and navigate to [http://localhost:3000/](http://localhost:3000/)
+    - This opens a simple chat application
+5.  Duplicate the tab and put both tabs side to side.
+6.  Start chatting 😀
+
+### LWC + WebSockets Demo
+
+1.  Test the [WebSockets server on Heroku](https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/)
+    - The code for this server is here: `<REPO>/WebSockets/LWC`
+2.  Open a browser tab and navigate to [https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/](https://et-realtimesf-basicws-6b1e66624e2a.herokuapp.com/)
+    - This tab can be opened in multiple computers
+3.  Click on the `Click Me` button, notice the `ping` and `pong` times are different but very close.
+4.  Leave that WebSockets server tab open (you will see why in a minute)
+5.  On a new tab, open the Scratch Org
+6.  Go to `App Launcher` > `LWC Demo` > `Web Sockets`
+7.  Duplicate the tab
+8.  Start interacting with the component
+    - Type something on the textbox
+    - Change the colors
+    - Notice how the other component(s) get automatically updated
+    - You could also see the messages and send them from the web page we left open
