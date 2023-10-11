@@ -4625,25 +4625,23 @@
   "variable": [
     {
       "key": "url",
-      "value": "https://test.salesforce.com",
-      "type": "string"
+      "value": "https://test.salesforce.com"
     },
     {
       "key": "username",
-      "value": ""
+      "value": "Copy from _user.json file"
     },
     {
       "key": "password",
-      "value": ""
+      "value": "Copy from _user.json file"
     },
     {
       "key": "clientId",
-      "value": ""
+      "value": "Consumer Key obtained from Manage Consumer Details in connected app"
     },
     {
       "key": "clientSecret",
-      "value": "",
-      "type": "string"
+      "value": "Consumer Secret obtained from Manage Consumer Details in connected app"
     },
     {
       "key": "secretToken",
